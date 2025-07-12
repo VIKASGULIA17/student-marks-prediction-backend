@@ -15,14 +15,16 @@ preprocessor = joblib.load('preprocessor.pkl')
 study_bins = joblib.load('study_bins.pkl')
 
 app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["https://student-marks-prediction.vercel.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 class StudentData(BaseModel):
     studentId: str
